@@ -35,6 +35,13 @@ sometimes the interaction with the API is not as pleasant as I would like.
 
 This is an attempt to provide the same functionality with a more friendlier API, and make it independent to the underlying streaming implementation.
 
+## Credits
+
+Many other projects have been used as an inspiration, here is a list of the main ones:
+
++ [neotypes/neotypes](https://github.com/neotypes/neotypes)
++ [mongodb/mongo-scala-driver](https://github.com/mongodb/mongo-scala-driver)
+
 ## License
 
 The project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for more details.
