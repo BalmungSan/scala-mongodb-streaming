@@ -3,6 +3,7 @@ import java.time.Year
 
 // Application dependencies.
 val MongoReactiveStreamsVersion = "1.11.0"
+val ReactiveStreamsVersion      = "1.0.2"
 
 lazy val commonSettings = Seq(
   ThisBuild / scalaVersion := "2.12.8",
@@ -82,6 +83,7 @@ lazy val core =
       commonSettings,
       name := "scala-mongodb-streaming",
       libraryDependencies ++= Seq(
-        "org.mongodb" % "mongodb-driver-reactivestreams" % MongoReactiveStreamsVersion,
+        "org.mongodb"         % "mongodb-driver-reactivestreams" % MongoReactiveStreamsVersion,
+        "org.reactivestreams" % "reactive-streams"               % ReactiveStreamsVersion
       )
     )
