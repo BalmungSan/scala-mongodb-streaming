@@ -12,6 +12,13 @@ And a set of implementation modules,
 which each one provide a concrete instance of the `Stream[S[_]]` typeclass
 for different streams of the _Scala ecosystem_.
 
+### Usage
+
+|Module|Description|
+| ----------------------------------------- |:--------------|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming" % version`|Core functionality.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-fs2" % version`| `fs2.Stream[F, T]` implementation _(For any **F** which has an instance of `cats.effect.ConcurrentEffect[F]`, like **IO**)_.|
+
 ## Motivation
 
 My very first Scala project used mongo,
@@ -35,6 +42,7 @@ The project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE)
 Code in scala-mongodb-streaming is derived in part from:
 
 + MongoDB Reactive Streams Java Driver, licensed under the Apache License 2.0.
++ FS2, licensed under the MIT License.
 
 ```
 Copyright 2019-2019 All scala-mongodb-streaming contributors

@@ -2,6 +2,8 @@ import de.heikoseeberger.sbtheader.License
 import java.time.Year
 
 // Application dependencies.
+val CatsEffectVersion           = "1.2.0"
+val FS2Version                  = "1.0.4"
 val MongoReactiveStreamsVersion = "1.11.0"
 val ReactiveStreamsVersion      = "1.0.2"
 
@@ -72,7 +74,8 @@ lazy val root =
   project
     .in(file("."))
     .aggregate(
-      core
+      core,
+      fs2
     )
 
 lazy val core =
@@ -85,5 +88,21 @@ lazy val core =
       libraryDependencies ++= Seq(
         "org.mongodb"         % "mongodb-driver-reactivestreams" % MongoReactiveStreamsVersion,
         "org.reactivestreams" % "reactive-streams"               % ReactiveStreamsVersion
+      )
+    )
+
+lazy val fs2 =
+  project
+    .in(file("fs2"))
+    .enablePlugins(AutomateHeaderPlugin)
+    .dependsOn(core % "compile->compile;test->test;provided->provided")
+    .settings(
+      commonSettings,
+      name := "scala-mongodb-streaming-fs2",
+      libraryDependencies ++= Seq(
+        "co.fs2"              %% "fs2-core"             % FS2Version,
+        "co.fs2"              %% "fs2-reactive-streams" % FS2Version,
+        "org.reactivestreams"  % "reactive-streams"     % ReactiveStreamsVersion,
+        "org.typelevel"       %% "cats-effect"          % CatsEffectVersion
       )
     )
