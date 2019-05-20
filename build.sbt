@@ -4,6 +4,7 @@ import java.time.Year
 // Application dependencies.
 val CatsEffectVersion           = "1.2.0"
 val FS2Version                  = "1.0.4"
+val MongoJavaVersion            = "3.10.2"
 val MongoReactiveStreamsVersion = "1.11.0"
 val ReactiveStreamsVersion      = "1.0.2"
 
@@ -86,10 +87,12 @@ lazy val core =
       commonSettings,
       name := "scala-mongodb-streaming",
       libraryDependencies ++= Seq(
+        "org.mongodb"         % "mongodb-driver-core"            % MongoJavaVersion,
         "org.mongodb"         % "mongodb-driver-reactivestreams" % MongoReactiveStreamsVersion,
         "org.reactivestreams" % "reactive-streams"               % ReactiveStreamsVersion
-      )
-    )
+      ),
+      Compile / sourceGenerators += DriverInfoGenerator.task.taskValue
+   )
 
 lazy val fs2 =
   project
