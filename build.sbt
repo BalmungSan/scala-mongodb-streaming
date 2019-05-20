@@ -2,6 +2,7 @@ import de.heikoseeberger.sbtheader.License
 import java.time.Year
 
 // Application dependencies.
+val AkkaStreamVersion           = "2.5.22"
 val CatsEffectVersion           = "1.2.0"
 val FS2Version                  = "1.0.4"
 val MongoJavaVersion            = "3.10.2"
@@ -77,6 +78,7 @@ lazy val root =
     .in(file("."))
     .aggregate(
       core,
+      akka,
       fs2,
       monix
     )
@@ -95,6 +97,20 @@ lazy val core =
       ),
       Compile / sourceGenerators += DriverInfoGenerator.task.taskValue
    )
+
+lazy val akka =
+  project
+    .in(file("akka"))
+    .enablePlugins(AutomateHeaderPlugin)
+    .dependsOn(core % "compile->compile;test->test;provided->provided")
+    .settings(
+      commonSettings,
+      name := "scala-mongodb-streaming-akka",
+      libraryDependencies ++= Seq(
+        "com.typesafe.akka"   %% "akka-stream"      % AkkaStreamVersion,
+        "org.reactivestreams"  % "reactive-streams" % ReactiveStreamsVersion
+      )
+    )
 
 lazy val fs2 =
   project

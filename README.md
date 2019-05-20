@@ -15,10 +15,11 @@ for different streams of the _Scala ecosystem_.
 ### Usage
 
 |Module|Description|
-| ----------------------------------------- |:--------------|
+|------|----------|
 |`"com.github.balmungsan" %% "scala-mongodb-streaming" % version`|Core functionality.|
-|`"com.github.balmungsan" %% "scala-mongodb-streaming-fs2" % version`| `fs2.Stream[F, T]` implementation _(For any **F** which has an instance of `cats.effect.ConcurrentEffect[F]`, like **IO**)_.|
-|`"com.github.balmungsan" %% "scala-mongodb-streaming-monix" % version`| `monix.reactive.Observable[T]` implementation.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-akka" % version`|`akka.stream.scaladsl.Source[T, NotUsed]` implementation.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-fs2" % version`|`fs2.Stream[F, T]` implementation _(For any **F** which has an instance of `cats.effect.ConcurrentEffect[F]`, like **IO**)_.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-monix" % version`|`monix.reactive.Observable[T]` implementation.|
 
 ## Motivation
 
@@ -50,7 +51,9 @@ The project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE)
 Code in scala-mongodb-streaming is derived in part from:
 
 + MongoDB Reactive Streams Java Driver, licensed under the Apache License 2.0.
++ Akka, licensed under the Apache License 2.0.
 + FS2, licensed under the MIT License.
++ Monix, licensed under the Apache License 2.0.
 
 ```
 Copyright 2019-2019 All scala-mongodb-streaming contributors
