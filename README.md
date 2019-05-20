@@ -18,6 +18,7 @@ for different streams of the _Scala ecosystem_.
 | ----------------------------------------- |:--------------|
 |`"com.github.balmungsan" %% "scala-mongodb-streaming" % version`|Core functionality.|
 |`"com.github.balmungsan" %% "scala-mongodb-streaming-fs2" % version`| `fs2.Stream[F, T]` implementation _(For any **F** which has an instance of `cats.effect.ConcurrentEffect[F]`, like **IO**)_.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-monix" % version`| `monix.reactive.Observable[T]` implementation.|
 
 ## Motivation
 

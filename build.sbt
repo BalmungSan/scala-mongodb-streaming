@@ -6,6 +6,7 @@ val CatsEffectVersion           = "1.2.0"
 val FS2Version                  = "1.0.4"
 val MongoJavaVersion            = "3.10.2"
 val MongoReactiveStreamsVersion = "1.11.0"
+val MonixVersion                = "3.0.0-RC2"
 val ReactiveStreamsVersion      = "1.0.2"
 
 lazy val commonSettings = Seq(
@@ -76,7 +77,8 @@ lazy val root =
     .in(file("."))
     .aggregate(
       core,
-      fs2
+      fs2,
+      monix
     )
 
 lazy val core =
@@ -107,5 +109,19 @@ lazy val fs2 =
         "co.fs2"              %% "fs2-reactive-streams" % FS2Version,
         "org.reactivestreams"  % "reactive-streams"     % ReactiveStreamsVersion,
         "org.typelevel"       %% "cats-effect"          % CatsEffectVersion
+      )
+    )
+
+lazy val monix =
+  project
+    .in(file("monix"))
+    .enablePlugins(AutomateHeaderPlugin)
+    .dependsOn(core % "compile->compile;test->test;provided->provided")
+    .settings(
+      commonSettings,
+      name := "scala-mongodb-streaming-monix",
+      libraryDependencies ++= Seq(
+        "io.monix"            %% "monix-reactive"   % MonixVersion,
+        "org.reactivestreams"  % "reactive-streams" % ReactiveStreamsVersion
       )
     )
