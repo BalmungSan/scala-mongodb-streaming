@@ -56,7 +56,7 @@ Code in scala-mongodb-streaming is derived in part from:
 + Monix, licensed under the Apache License 2.0.
 
 ```
-Copyright 2019-2019 All scala-mongodb-streaming contributors
+Copyright 2019-2019 All scala-mongodb-streaming contributors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
