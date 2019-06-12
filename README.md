@@ -20,6 +20,7 @@ for different streams of the _Scala ecosystem_.
 |`"com.github.balmungsan" %% "scala-mongodb-streaming-akka" % version`|`akka.stream.scaladsl.Source[T, NotUsed]` implementation.|
 |`"com.github.balmungsan" %% "scala-mongodb-streaming-fs2" % version`|`fs2.Stream[F, T]` implementation _(For any **F** which has an instance of `cats.effect.ConcurrentEffect[F]`, like **IO**)_.|
 |`"com.github.balmungsan" %% "scala-mongodb-streaming-monix" % version`|`monix.reactive.Observable[T]` implementation.|
+|`"com.github.balmungsan" %% "scala-mongodb-streaming-zio" % version`|`zio.stream.ZStream[Any, Throwable, T]` implementation.|
 
 ## Motivation
 
@@ -35,7 +36,7 @@ I have to say that everything has been great until now.
 But nevertheless, since the reactive driver is written in Java,
 sometimes the interaction with the API is not as pleasant as I would like.
 
-This is an attempt to provide the same functionality with a more friendlier API, and make it independent to the underlying streaming implementation.
+This is an attempt to provide the same functionality with a more friendlier API, and make it independent of the underlying streaming implementation.
 
 ## Credits
 
@@ -54,6 +55,7 @@ Code in scala-mongodb-streaming is derived in part from:
 + Akka, licensed under the Apache License 2.0.
 + FS2, licensed under the MIT License.
 + Monix, licensed under the Apache License 2.0.
++ ZIO, licensed under the Apache License 2.0.
 
 ```
 Copyright 2019-2019 All scala-mongodb-streaming contributors.

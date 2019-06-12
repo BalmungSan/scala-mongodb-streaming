@@ -9,6 +9,7 @@ val MongoJavaVersion            = "3.10.2"
 val MongoReactiveStreamsVersion = "1.11.0"
 val MonixVersion                = "3.0.0-RC2"
 val ReactiveStreamsVersion      = "1.0.2"
+val ZioVersion                  = "1.0.0-RC8-4"
 
 lazy val commonSettings = Seq(
   ThisBuild / scalaVersion := "2.12.8",
@@ -67,10 +68,12 @@ lazy val commonSettings = Seq(
   organizationName := "All scala-mongodb-streaming contributors.",
   startYear := Some(2019),
   licenses += ("Apache-2.0", new URL("https://www.apache.org/licenses/LICENSE-2.0.txt")),
-  headerLicense := Some(License.ALv2(
-    s"${startYear.value.get}-${Year.now}",
-    organizationName.value
-  ))
+  headerLicense := Some(
+    License.ALv2(
+      s"${startYear.value.get}-${Year.now}",
+      organizationName.value
+    )
+  )
 )
 
 lazy val root =
@@ -80,7 +83,8 @@ lazy val root =
       core,
       akka,
       fs2,
-      monix
+      monix,
+      zio
     )
 
 lazy val core =
@@ -96,7 +100,7 @@ lazy val core =
         "org.reactivestreams" % "reactive-streams"               % ReactiveStreamsVersion
       ),
       Compile / sourceGenerators += DriverInfoGenerator.task.taskValue
-   )
+    )
 
 lazy val akka =
   project
@@ -139,5 +143,20 @@ lazy val monix =
       libraryDependencies ++= Seq(
         "io.monix"            %% "monix-reactive"   % MonixVersion,
         "org.reactivestreams"  % "reactive-streams" % ReactiveStreamsVersion
+      )
+    )
+
+lazy val zio =
+  project
+    .in(file("zio"))
+    .enablePlugins(AutomateHeaderPlugin)
+    .dependsOn(core % "compile->compile;test->test;provided->provided")
+    .settings(
+      commonSettings,
+      name := "scala-mongodb-streaming-zio",
+      libraryDependencies ++= Seq(
+        "dev.zio"             %% "zio-streams"                 % ZioVersion,
+        "dev.zio"             %% "zio-interop-reactivestreams" % ZioVersion,
+        "org.reactivestreams"  % "reactive-streams"            % ReactiveStreamsVersion
       )
     )
